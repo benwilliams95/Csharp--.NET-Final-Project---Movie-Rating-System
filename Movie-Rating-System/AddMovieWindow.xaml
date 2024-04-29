@@ -27,14 +27,12 @@
             <ComboBoxItem Content="5 Stars"/>
         </ComboBox>
 
-        <Label Content="Date Watched:" Margin="10,10,10,0" Grid.Row="4"/>
+        <Label Content="Date Watched:" Margin="10,10,10,157" Grid.Row="4"/>
         <DatePicker x:Name="dpDateWatched" Margin="10,41,10,131" Grid.Row="4"/>
 
         <Label Content="Written Review:" Margin="10,83,10,-27" Grid.Row="4"/>
-        <ScrollViewer Grid.Row="5" VerticalScrollBarVisibility="Auto">
-            <TextBox x:Name="txtWrittenReview" Margin="10,110,10,10" TextWrapping="Wrap" Height="78"/>
-        </ScrollViewer>
+        <TextBox Grid.Row="5" x:Name="txtWrittenReview" Margin="10,110,10,10" TextWrapping="Wrap" Height="78"/>
 
-        <Button Content="Add" Grid.Row="4" HorizontalAlignment="Center" Margin="0,204,0,-38" Width="80"/>
+        <Button Content="Add" Grid.Row="4" Click="Button_Click" HorizontalAlignment="Center" Margin="0,204,0,-38" Width="80"/>
     </Grid>
 </Window>
