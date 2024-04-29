@@ -1,5 +1,5 @@
 ﻿Movie-Rating-System
-1.0.0.0
+
 
 winexe
 C#
@@ -12,9 +12,9 @@ TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 F:\24-0500 UM Undergrad\24-0500 SP24\C# .NET\Final Project\C--.NET-Final-Project---Movie-Rating-System\Movie-Rating-System\App.xaml
 3-744454230
 
-71689174515
+5-91514495
 194-200944676
 AddMovieWindow.xaml;MainWindow.xaml;Watchlist.xaml;
 
-True
+False
 

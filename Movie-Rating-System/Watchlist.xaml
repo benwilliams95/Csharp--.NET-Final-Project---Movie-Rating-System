@@ -1,0 +1,12 @@
+﻿<Window x:Class="Movie_Rating_System.Watchlist"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Watchlist" Height="450" Width="800">
+    <Grid>
+        <!-- Watchlist Title -->
+        <Label Content="Watchlist" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="36" Margin="0,20,0,0"/>
+
+        <!-- Watchlist ListBox -->
+        <ListBox Name="lstWatchlist" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,80,0,0" Height="308" Width="304"/>
+    </Grid>
+</Window>

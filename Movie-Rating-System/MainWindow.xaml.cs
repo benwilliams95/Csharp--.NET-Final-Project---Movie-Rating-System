@@ -24,5 +24,20 @@ namespace Movie_Rating_System
         {
             InitializeComponent();
         }
+        private void AddMovie_Click(object sender, RoutedEventArgs e)
+        {
+            AddMovieWindow addMovieWindow = new AddMovieWindow();
+            addMovieWindow.Owner = this;
+            addMovieWindow.ShowDialog();
+        }
+
+        private void CheckWatchlist_Click(object sender, RoutedEventArgs e)
+        {
+            Watchlist watchlistWindow = new Watchlist();
+            watchlistWindow.ShowDialog();
+        }
+
     }
+
+
 }
