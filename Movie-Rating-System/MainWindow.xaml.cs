@@ -79,7 +79,7 @@ namespace Movie_Rating_System
             {
                 // Open the ViewLogWindow with the details of the selected movie
                 ViewLogWindow viewLogWindow = new ViewLogWindow();
-                viewLogWindow.Title = selectedMovie.Title;
+                viewLogWindow.MovieTitle = selectedMovie.Title;
                 viewLogWindow.Rating = selectedMovie.Rating;
                 viewLogWindow.WrittenReview = selectedMovie.WrittenReview;
                 viewLogWindow.DateWatched = selectedMovie.DateWatched.ToShortDateString();

@@ -23,7 +23,7 @@ namespace Movie_Rating_System
         }
 
         // Properties to bind to the UI elements
-        public string Title { get; set; }
+        public string MovieTitle { get; set; }
         public double Rating { get; set; }
         public string WrittenReview { get; set; }
         public string DateWatched { get; set; }
