@@ -70,6 +70,25 @@ namespace Movie_Rating_System
             watchlistWindow.ShowDialog();
         }
 
+        private void lstLoggedMovies_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            // Get the selected movie from the ListBox
+            Movie selectedMovie = (Movie)lstLoggedMovies.SelectedItem;
+
+            if (selectedMovie != null)
+            {
+                // Open the ViewLogWindow with the details of the selected movie
+                ViewLogWindow viewLogWindow = new ViewLogWindow();
+                viewLogWindow.Title = selectedMovie.Title;
+                viewLogWindow.Rating = selectedMovie.Rating;
+                viewLogWindow.WrittenReview = selectedMovie.WrittenReview;
+                viewLogWindow.DateWatched = selectedMovie.DateWatched.ToShortDateString();
+                viewLogWindow.ShowDialog();
+            }
+        }
+
+
+
     }
 
 

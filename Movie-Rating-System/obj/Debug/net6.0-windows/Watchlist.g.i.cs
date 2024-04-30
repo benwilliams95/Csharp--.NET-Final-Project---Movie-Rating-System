@@ -60,7 +60,7 @@ namespace Movie_Rating_System {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Movie-Rating-System;component/watchlist.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Movie-Rating-System;V1.0.0.0;component/watchlist.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\Watchlist.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

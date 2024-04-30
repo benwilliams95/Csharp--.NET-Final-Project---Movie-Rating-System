@@ -25,7 +25,7 @@
 
         <!-- Logged Movies Section -->
         <Label Content="My Logged Movies" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="24" Margin="49,120,0,0"/>
-        <ListBox Name="lstLoggedMovies" HorizontalAlignment="Left" Height="350" Margin="49,160,0,0" VerticalAlignment="Top" Width="400"/>
+        <ListBox Name="lstLoggedMovies" MouseDoubleClick="lstLoggedMovies_MouseDoubleClick" HorizontalAlignment="Left" Height="350" Margin="49,160,0,0" VerticalAlignment="Top" Width="400"/>
 
         <!-- Filters Section -->
         <Label Content="Filters" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="24" Margin="547,125,0,0"/>

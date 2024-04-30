@@ -23,3 +23,5 @@ F:\24-0500 UM Undergrad\24-0500 SP24\C# .NET\Final Project\C--.NET-Final-Project
 F:\24-0500 UM Undergrad\24-0500 SP24\C# .NET\Final Project\C--.NET-Final-Project---Movie-Rating-System\Movie-Rating-System\obj\Debug\net6.0-windows\AddMovieWindow.g.cs
 F:\24-0500 UM Undergrad\24-0500 SP24\C# .NET\Final Project\C--.NET-Final-Project---Movie-Rating-System\Movie-Rating-System\obj\Debug\net6.0-windows\Watchlist.baml
 F:\24-0500 UM Undergrad\24-0500 SP24\C# .NET\Final Project\C--.NET-Final-Project---Movie-Rating-System\Movie-Rating-System\obj\Debug\net6.0-windows\Watchlist.g.cs
+F:\24-0500 UM Undergrad\24-0500 SP24\C# .NET\Final Project\C--.NET-Final-Project---Movie-Rating-System\Movie-Rating-System\obj\Debug\net6.0-windows\ViewLogWindow.baml
+F:\24-0500 UM Undergrad\24-0500 SP24\C# .NET\Final Project\C--.NET-Final-Project---Movie-Rating-System\Movie-Rating-System\obj\Debug\net6.0-windows\ViewLogWindow.g.cs
