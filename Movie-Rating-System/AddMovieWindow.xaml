@@ -16,6 +16,7 @@
 
         <Label Content="Select Rating:" Margin="10,10,10,0" Grid.Row="2"/>
         <ComboBox x:Name="cmbRating" Margin="10,5,10,0" Grid.Row="3">
+            <ComboBoxItem Content="0.5 Star"/>
             <ComboBoxItem Content="1 Star"/>
             <ComboBoxItem Content="1.5 Stars"/>
             <ComboBoxItem Content="2 Stars"/>

@@ -25,7 +25,15 @@
 
         <!-- Logged Movies Section -->
         <Label Content="My Logged Movies" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="24" Margin="49,120,0,0"/>
-        <ListBox Name="lstLoggedMovies" MouseDoubleClick="lstLoggedMovies_MouseDoubleClick" HorizontalAlignment="Left" Height="350" Margin="49,160,0,0" VerticalAlignment="Top" Width="400"/>
+        <ListView Name="lstLoggedMovies" MouseDoubleClick="lstLoggedMovies_MouseDoubleClick" HorizontalAlignment="Left" Height="350" Margin="49,160,0,0" VerticalAlignment="Top" Width="400">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" Width="300"/>
+                    <GridViewColumn Header="Rating" DisplayMemberBinding="{Binding Rating}" Width="99"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
 
         <!-- Filters Section -->
         <Label Content="Filters" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="24" Margin="547,125,0,0"/>

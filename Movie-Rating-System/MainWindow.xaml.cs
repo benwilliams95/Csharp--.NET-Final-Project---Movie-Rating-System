@@ -15,6 +15,11 @@ using System.Windows.Shapes;
 
 namespace Movie_Rating_System
 {
+    public static class WatchlistManager
+    {
+        public static List<string> WatchlistItems { get; set; } = new List<string>();
+    }
+
     public class Movie
     {
         public string Title { get; set; }

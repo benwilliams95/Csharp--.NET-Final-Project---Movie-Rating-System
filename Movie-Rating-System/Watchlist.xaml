@@ -3,10 +3,22 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Watchlist" Height="450" Width="800">
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="DeepSkyBlue" Offset="0"/>
+                <GradientStop Color="MediumSlateBlue" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <!-- Watchlist Title -->
-        <Label Content="Watchlist" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="36" Margin="0,20,0,0"/>
+        <Label Content="Watchlist" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="36" Margin="0,10,0,0"/>
+
+        <!-- TextBox for adding movies -->
+        <TextBox x:Name="txtAddMovie" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="70,0,0,0" Width="200"/>
+
+        <!-- Button to add movie to watchlist -->
+        <Button Content="Add to Watchlist" Click="AddToWatchlist_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="124,236,0,0"/>
 
         <!-- Watchlist ListBox -->
-        <ListBox Name="lstWatchlist" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,80,0,0" Height="308" Width="304"/>
+        <ListBox Name="lstWatchlist" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="323,68,0,0" Height="337" Width="447"/>
     </Grid>
 </Window>

@@ -22,6 +22,27 @@ namespace Movie_Rating_System
         public Watchlist()
         {
             InitializeComponent();
+
+            // Load watchlist items from the static list
+            foreach (string movieTitle in WatchlistManager.WatchlistItems)
+            {
+                lstWatchlist.Items.Add(movieTitle);
+            }
+        }
+
+        private void AddToWatchlist_Click(object sender, RoutedEventArgs e)
+        {
+            // Get the movie title from the TextBox
+            string movieTitle = txtAddMovie.Text;
+
+            // Add the movie title to the static watchlist
+            WatchlistManager.WatchlistItems.Add(movieTitle);
+
+            // Add the movie title to the ListBox
+            lstWatchlist.Items.Add(movieTitle);
+
+            // Clear the TextBox after adding the movie
+            txtAddMovie.Clear();
         }
     }
 }
