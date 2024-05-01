@@ -44,5 +44,21 @@ namespace Movie_Rating_System
             // Clear the TextBox after adding the movie
             txtAddMovie.Clear();
         }
+
+        private void lstWatchlist_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            // Get the selected item from the ListBox
+            string selectedMovie = (string)lstWatchlist.SelectedItem;
+
+            // Display a confirmation dialog box
+            MessageBoxResult result = MessageBox.Show("Do you want to remove this movie?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            // If user confirms, remove the movie from the watchlist and ListBox
+            if (result == MessageBoxResult.Yes)
+            {
+                WatchlistManager.WatchlistItems.Remove(selectedMovie);
+                lstWatchlist.Items.Remove(selectedMovie);
+            }
+        }
     }
 }

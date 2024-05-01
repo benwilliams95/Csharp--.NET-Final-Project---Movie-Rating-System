@@ -20,7 +20,7 @@ namespace Movie_Rating_System
         public static List<string> WatchlistItems { get; set; } = new List<string>();
     }
 
-    public class Movie
+    public class MovieBase
     {
         public string Title { get; set; }
         public double Rating { get; set; }
@@ -28,7 +28,7 @@ namespace Movie_Rating_System
         public DateTime DateWatched { get; set; }
 
         // Constructor to initialize a movie with its properties
-        public Movie(string title, double rating, string writtenReview, DateTime dateWatched)
+        public MovieBase(string title, double rating, string writtenReview, DateTime dateWatched)
         {
             Title = title;
             Rating = rating;
@@ -40,6 +40,13 @@ namespace Movie_Rating_System
         public override string ToString()
         {
             return Title;
+        }
+    }
+    public class Movie : MovieBase
+    {
+        public Movie(string title, double rating, string writtenReview, DateTime dateWatched)
+            : base(title, rating, writtenReview, dateWatched)
+        {
         }
     }
 
