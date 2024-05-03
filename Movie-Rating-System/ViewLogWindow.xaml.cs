@@ -16,16 +16,32 @@ namespace Movie_Rating_System
 {
     public partial class ViewLogWindow : Window
     {
-        public ViewLogWindow()
+        public ViewLogWindow(Movie movie)
         {
             InitializeComponent();
-            DataContext = this;
+            DataContext = movie;
         }
 
         // Properties to bind to the UI elements
-        public string MovieTitle { get; set; }
         public double Rating { get; set; }
         public string WrittenReview { get; set; }
         public string DateWatched { get; set; }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            // Get the selected movie from the ListBox
+            Movie selectedMovie = (Movie)this.DataContext;
+
+            // Remove the selected movie from the main list of logged movies
+            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+            if (mainWindow != null)
+            {
+                mainWindow.loggedMovies.Remove(selectedMovie);
+                mainWindow.lstLoggedMovies.Items.Refresh();
+            }
+
+            // Close the window
+            Close();
+        }
     }
 }

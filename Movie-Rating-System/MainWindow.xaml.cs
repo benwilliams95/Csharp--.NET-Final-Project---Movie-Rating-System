@@ -52,7 +52,7 @@ namespace Movie_Rating_System
 
     public partial class MainWindow : Window
     {
-        private List<Movie> loggedMovies = new List<Movie>();
+        public List<Movie> loggedMovies = new List<Movie>();
         public MainWindow()
         {
             InitializeComponent();
@@ -90,16 +90,17 @@ namespace Movie_Rating_System
             if (selectedMovie != null)
             {
                 // Open the ViewLogWindow with the details of the selected movie
-                ViewLogWindow viewLogWindow = new ViewLogWindow();
-                viewLogWindow.MovieTitle = selectedMovie.Title;
-                viewLogWindow.Rating = selectedMovie.Rating;
-                viewLogWindow.WrittenReview = selectedMovie.WrittenReview;
-                viewLogWindow.DateWatched = selectedMovie.DateWatched.ToShortDateString();
+                ViewLogWindow viewLogWindow = new ViewLogWindow(selectedMovie);
+
                 viewLogWindow.ShowDialog();
             }
         }
 
-
+        public void RemoveMovie(Movie movie)
+        {
+            loggedMovies.Remove(movie);
+            lstLoggedMovies.Items.Refresh();
+        }
 
     }
 

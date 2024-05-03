@@ -1,13 +1,15 @@
 ﻿<Window x:Class="Movie_Rating_System.ViewLogWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="{Binding MovieTitle}" Height="300" Width="400">
+        Title="{Binding Title}" Height="300" Width="400"
+        Background="Beige">
     <Grid>
         <StackPanel Margin="20">
-            <TextBlock Text="{Binding Title}" FontWeight="Bold" FontSize="20" Margin="0 0 0 10"/>
+            <TextBlock FontWeight="Bold" FontSize="30" Text="{Binding Title}" Margin="0 0 0 5"/>
             <TextBlock Text="{Binding Rating}" Margin="0 0 0 5"/>
             <TextBlock Text="{Binding DateWatched}" Margin="0 0 0 5"/>
             <TextBlock Text="{Binding WrittenReview}" TextWrapping="Wrap" Margin="0 10 0 0"/>
         </StackPanel>
+        <Button Content="Delete" Click="Delete_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,20" Width="68"/>
     </Grid>
 </Window>
