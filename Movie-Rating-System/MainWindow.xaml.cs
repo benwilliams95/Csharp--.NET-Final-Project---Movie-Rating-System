@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,12 +52,32 @@ namespace Movie_Rating_System
         }
     }
 
+    public class DateConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is DateTime date)
+            {
+                return date.ToShortDateString();
+            }
+            return value;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     public partial class MainWindow : Window
     {
         public List<Movie> loggedMovies = new List<Movie>();
         public MainWindow()
         {
             InitializeComponent();
+
+            loggedMovies = loggedMovies.OrderByDescending(movie => movie.Rating).ToList();
+
             lstLoggedMovies.ItemsSource = loggedMovies;
         }
         private void AddMovie_Click(object sender, RoutedEventArgs e)
@@ -71,8 +93,11 @@ namespace Movie_Rating_System
                                            addMovieWindow.WrittenReview,
                                            addMovieWindow.DateWatched);
                 loggedMovies.Add(newMovie);
-                // Refresh the ListBox to update the displayed movies
-                lstLoggedMovies.Items.Refresh();
+
+                // Refresh the ListBox to update the displayed movies in sorted order using LINQ
+                loggedMovies = loggedMovies.OrderByDescending(movie => movie.Rating).ToList();
+                lstLoggedMovies.ItemsSource = loggedMovies;
+
             }
         }
 

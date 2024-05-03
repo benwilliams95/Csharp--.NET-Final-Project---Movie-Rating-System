@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="Movie Log" Height="600" Width="800"
         Background="DarkSlateBlue">
+    <Window.Resources>
+        <local:DateConverter x:Key="DateConverter"/>
+    </Window.Resources>
     <Grid>
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -28,8 +31,9 @@
         <ListView Name="lstLoggedMovies" MouseDoubleClick="lstLoggedMovies_MouseDoubleClick" HorizontalAlignment="Left" Height="350" Margin="49,160,0,0" VerticalAlignment="Top" Width="400">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" Width="300"/>
+                    <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" Width="200"/>
                     <GridViewColumn Header="Rating" DisplayMemberBinding="{Binding Rating}" Width="99"/>
+                    <GridViewColumn Header="Date Watched" DisplayMemberBinding="{Binding DateWatched, Converter={StaticResource DateConverter}}" Width="100"/>
                 </GridView>
             </ListView.View>
         </ListView>
