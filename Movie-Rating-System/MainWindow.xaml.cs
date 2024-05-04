@@ -82,7 +82,25 @@ namespace Movie_Rating_System
             loggedMovies = loggedMovies.OrderByDescending(movie => movie.Rating).ToList();
 
             lstLoggedMovies.ItemsSource = loggedMovies;
+
+            // Populate the year filter ComboBox
+            var uniqueYears = loggedMovies.Select(movie => movie.DateWatched.Year).Distinct().ToList();
+            uniqueYears.Sort(); // Sort the years in ascending order
+            var yearOptions = uniqueYears.Cast<object>().ToList(); // Convert years to object type
+            yearOptions.Insert(0, "All Years"); // Insert "All Years" as the default option
+            cmbYearFilter.ItemsSource = yearOptions;
+
+
+            // Populate the rating filter ComboBox
+            var uniqueRatings = loggedMovies.Select(movie => movie.Rating).Distinct().ToList();
+            uniqueRatings.Sort(); // Sort the ratings in ascending order
+            var ratingOptions = uniqueRatings.Cast<object>().ToList(); // Convert ratings to object type
+            ratingOptions.Insert(0, "All Ratings"); // Insert "All Ratings" as the default option
+            cmbRatingFilter.ItemsSource = ratingOptions;
+
         }
+
+
         private void AddMovie_Click(object sender, RoutedEventArgs e)
         {
             AddMovieWindow addMovieWindow = new AddMovieWindow();
@@ -96,6 +114,21 @@ namespace Movie_Rating_System
                                            addMovieWindow.WrittenReview,
                                            addMovieWindow.DateWatched);
                 loggedMovies.Add(newMovie);
+
+                // Populate the year filter ComboBox
+                var uniqueYears = loggedMovies.Select(movie => movie.DateWatched.Year).Distinct().ToList();
+                uniqueYears.Sort(); // Sort the years in ascending order
+                var yearOptions = uniqueYears.Cast<object>().ToList(); // Convert years to object type
+                yearOptions.Insert(0, "All Years"); // Insert "All Years" as the default option
+                cmbYearFilter.ItemsSource = yearOptions;
+
+
+                // Populate the rating filter ComboBox
+                var uniqueRatings = loggedMovies.Select(movie => movie.Rating).Distinct().ToList();
+                uniqueRatings.Sort(); // Sort the ratings in ascending order
+                var ratingOptions = uniqueRatings.Cast<object>().ToList(); // Convert ratings to object type
+                ratingOptions.Insert(0, "All Ratings"); // Insert "All Ratings" as the default option
+                cmbRatingFilter.ItemsSource = ratingOptions;
 
                 // Sort the movies based on the current sorting column and order
                 switch (currentSortColumn)

@@ -64,18 +64,8 @@
         <!-- Filters Section -->
         <Label Content="Filters" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="24" Margin="547,125,0,0"/>
         <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="547,160,0,74">
-            <ComboBox x:Name="cmbGenreFilter" Width="200" Margin="0,5">
-                <ComboBoxItem Content="All Genres"/>
-                <!-- Add more genres here -->
-            </ComboBox>
-            <ComboBox x:Name="cmbDecadeFilter" Width="200" Margin="0,5">
-                <ComboBoxItem Content="All Decades"/>
-                <!-- Add more decades here -->
-            </ComboBox>
-            <ComboBox x:Name="cmbRatingFilter" Width="200" Margin="0,5">
-                <ComboBoxItem Content="All Ratings"/>
-                <!-- Add more rating options here -->
-            </ComboBox>
+            <ComboBox x:Name="cmbYearFilter" Width="200" Margin="0,5"/>
+            <ComboBox x:Name="cmbRatingFilter" Width="200" Margin="0,5"/>
         </StackPanel>
         <Button Content="Check Watchlist" Click="CheckWatchlist_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="547,476,0,0" Height="34" Width="200"/>
     </Grid>
