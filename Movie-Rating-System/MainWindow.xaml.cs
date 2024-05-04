@@ -72,6 +72,9 @@ namespace Movie_Rating_System
     public partial class MainWindow : Window
     {
         public List<Movie> loggedMovies = new List<Movie>();
+        private string currentSortColumn = "Rating";
+        private bool isSortAscending = false;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -94,12 +97,30 @@ namespace Movie_Rating_System
                                            addMovieWindow.DateWatched);
                 loggedMovies.Add(newMovie);
 
-                // Refresh the ListBox to update the displayed movies in sorted order using LINQ
-                loggedMovies = loggedMovies.OrderByDescending(movie => movie.Rating).ToList();
-                lstLoggedMovies.ItemsSource = loggedMovies;
+                // Sort the movies based on the current sorting column and order
+                switch (currentSortColumn)
+                {
+                    case "Title":
+                        loggedMovies = isSortAscending ? loggedMovies.OrderBy(movie => movie.Title).ToList()
+                                                       : loggedMovies.OrderByDescending(movie => movie.Title).ToList();
+                        break;
+                    case "Rating":
+                        loggedMovies = isSortAscending ? loggedMovies.OrderBy(movie => movie.Rating).ToList()
+                                                       : loggedMovies.OrderByDescending(movie => movie.Rating).ToList();
+                        break;
+                    case "DateWatched":
+                        loggedMovies = isSortAscending ? loggedMovies.OrderBy(movie => movie.DateWatched).ToList()
+                                                       : loggedMovies.OrderByDescending(movie => movie.DateWatched).ToList();
+                        break;
+                    default:
+                        break;
+                }
 
+                // Refresh the ListBox with the sorted movies
+                lstLoggedMovies.ItemsSource = loggedMovies;
             }
         }
+
 
         private void CheckWatchlist_Click(object sender, RoutedEventArgs e)
         {
@@ -126,6 +147,48 @@ namespace Movie_Rating_System
             loggedMovies.Remove(movie);
             lstLoggedMovies.Items.Refresh();
         }
+
+        private void SortHeader_Click(object sender, RoutedEventArgs e)
+        {
+            // Sort logic based on the clicked column header
+            GridViewColumnHeader column = sender as GridViewColumnHeader;
+            string sortBy = column.Tag.ToString();
+
+            // Check if the clicked column is already the current sorting column
+            if (sortBy == currentSortColumn)
+            {
+                // Toggle the sort order
+                isSortAscending = !isSortAscending;
+            }
+            else
+            {
+                // If a different column is clicked, set it as the current sorting column and default to ascending order
+                currentSortColumn = sortBy;
+                isSortAscending = true;
+            }
+
+            // Apply sorting based on the current column and sort order
+            switch (sortBy)
+            {
+                case "Title":
+                    loggedMovies = isSortAscending ? loggedMovies.OrderBy(movie => movie.Title).ToList()
+                                                   : loggedMovies.OrderByDescending(movie => movie.Title).ToList();
+                    break;
+                case "Rating":
+                    loggedMovies = isSortAscending ? loggedMovies.OrderBy(movie => movie.Rating).ToList()
+                                                   : loggedMovies.OrderByDescending(movie => movie.Rating).ToList();
+                    break;
+                case "DateWatched":
+                    loggedMovies = isSortAscending ? loggedMovies.OrderBy(movie => movie.DateWatched).ToList()
+                                                   : loggedMovies.OrderByDescending(movie => movie.DateWatched).ToList();
+                    break;
+                default:
+                    break;
+            }
+
+            lstLoggedMovies.ItemsSource = loggedMovies;
+        }
+
 
     }
 

@@ -23,6 +23,8 @@ namespace Movie_Rating_System
         {
             InitializeComponent();
 
+            WatchlistManager.WatchlistItems = WatchlistManager.WatchlistItems.OrderBy(item => item).ToList();
+
             // Load watchlist items from the static list
             foreach (string movieTitle in WatchlistManager.WatchlistItems)
             {
@@ -38,8 +40,15 @@ namespace Movie_Rating_System
             // Add the movie title to the static watchlist
             WatchlistManager.WatchlistItems.Add(movieTitle);
 
-            // Add the movie title to the ListBox
-            lstWatchlist.Items.Add(movieTitle);
+            // Sort watchlist items alphabetically
+            var sortedWatchlistItems = WatchlistManager.WatchlistItems.OrderBy(item => item).ToList();
+
+            // Clear and reload the ListBox with sorted watchlist items
+            lstWatchlist.Items.Clear();
+            foreach (string title in sortedWatchlistItems)
+            {
+                lstWatchlist.Items.Add(title);
+            }
 
             // Clear the TextBox after adding the movie
             txtAddMovie.Clear();

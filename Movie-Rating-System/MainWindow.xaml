@@ -31,12 +31,34 @@
         <ListView Name="lstLoggedMovies" MouseDoubleClick="lstLoggedMovies_MouseDoubleClick" HorizontalAlignment="Left" Height="350" Margin="49,160,0,0" VerticalAlignment="Top" Width="400">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" Width="200"/>
-                    <GridViewColumn Header="Rating" DisplayMemberBinding="{Binding Rating}" Width="99"/>
-                    <GridViewColumn Header="Date Watched" DisplayMemberBinding="{Binding DateWatched, Converter={StaticResource DateConverter}}" Width="100"/>
+                    <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" Width="200">
+                        <GridViewColumn.HeaderContainerStyle>
+                            <Style TargetType="{x:Type GridViewColumnHeader}">
+                                <Setter Property="Tag" Value="Title"/>
+                                <EventSetter Event="Click" Handler="SortHeader_Click"/>
+                            </Style>
+                        </GridViewColumn.HeaderContainerStyle>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Rating" DisplayMemberBinding="{Binding Rating}" Width="99">
+                        <GridViewColumn.HeaderContainerStyle>
+                            <Style TargetType="{x:Type GridViewColumnHeader}">
+                                <Setter Property="Tag" Value="Rating"/>
+                                <EventSetter Event="Click" Handler="SortHeader_Click"/>
+                            </Style>
+                        </GridViewColumn.HeaderContainerStyle>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Date Watched" DisplayMemberBinding="{Binding DateWatched, Converter={StaticResource DateConverter}}" Width="100">
+                        <GridViewColumn.HeaderContainerStyle>
+                            <Style TargetType="{x:Type GridViewColumnHeader}">
+                                <Setter Property="Tag" Value="DateWatched"/>
+                                <EventSetter Event="Click" Handler="SortHeader_Click"/>
+                            </Style>
+                        </GridViewColumn.HeaderContainerStyle>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
+
 
 
         <!-- Filters Section -->
