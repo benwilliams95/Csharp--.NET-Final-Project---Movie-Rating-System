@@ -187,12 +187,22 @@ namespace Movie_Rating_System
             }
         }
 
-        public void RemoveMovie(Movie movie)
+        public void UpdateFilters()
         {
-            loggedMovies.Remove(movie);
-            lstLoggedMovies.Items.Refresh();
-        }
+            // Populate the year filter ComboBox
+            var uniqueYears = loggedMovies.Select(movie => movie.DateWatched.Year).Distinct().ToList();
+            uniqueYears.Sort(); // Sort the years in ascending order
+            var yearOptions = uniqueYears.Select(year => year.ToString()).ToList(); // Convert years to string type
+            yearOptions.Insert(0, "All Years"); // Insert "All Years" as the default option
+            cmbYearFilter.ItemsSource = yearOptions;
 
+            // Populate the rating filter ComboBox
+            var uniqueRatings = loggedMovies.Select(movie => movie.Rating).Distinct().ToList();
+            uniqueRatings.Sort(); // Sort the ratings in ascending order
+            var ratingOptions = uniqueRatings.Select(year => year.ToString()).ToList(); // Convert ratings to object type
+            ratingOptions.Insert(0, "All Ratings"); // Insert "All Ratings" as the default option
+            cmbRatingFilter.ItemsSource = ratingOptions;
+        }
         
 
         private List<Movie> filteredMovies = new List<Movie>();

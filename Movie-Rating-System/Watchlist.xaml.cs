@@ -34,8 +34,18 @@ namespace Movie_Rating_System
 
         private void AddToWatchlist_Click(object sender, RoutedEventArgs e)
         {
+
             // Get the movie title from the TextBox
             string movieTitle = txtAddMovie.Text;
+
+            // Check if the movie title is empty
+            if (string.IsNullOrWhiteSpace(movieTitle))
+            {
+                // If the movie title is empty, show a message box
+                MessageBox.Show("No movie title entered!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                // Return without adding the movie to the watchlist
+                return;
+            }
 
             // Add the movie title to the static watchlist
             WatchlistManager.WatchlistItems.Add(movieTitle);
@@ -56,6 +66,11 @@ namespace Movie_Rating_System
 
         private void lstWatchlist_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            if (lstWatchlist.Items.Count == 0)
+            {
+                return;
+            }
+
             // Get the selected item from the ListBox
             string selectedMovie = (string)lstWatchlist.SelectedItem;
 

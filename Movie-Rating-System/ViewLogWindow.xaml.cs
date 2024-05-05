@@ -38,6 +38,7 @@ namespace Movie_Rating_System
             {
                 mainWindow.loggedMovies.Remove(selectedMovie);
                 mainWindow.lstLoggedMovies.Items.Refresh();
+                mainWindow.UpdateFilters();
             }
 
             // Close the window

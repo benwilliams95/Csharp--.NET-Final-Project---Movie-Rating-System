@@ -25,10 +25,20 @@ namespace Movie_Rating_System
         public AddMovieWindow()
         {
             InitializeComponent();
+            dpDateWatched.DisplayDateEnd = DateTime.Now;
+            dpDateWatched.SelectedDateChanged += DpDateWatched_SelectedDateChanged;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtMovieName.Text))
+            {
+                // If the movie name is empty, display a message box
+                MessageBox.Show("No movie title entered!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                // Keep the AddMovieWindow open without adding to log
+                return;
+            }
+
             // Assign user input to the properties when the Add button is clicked
             MovieName = txtMovieName.Text;
             // Parse the selected rating from the ComboBox
@@ -40,8 +50,21 @@ namespace Movie_Rating_System
             }
             WrittenReview = txtWrittenReview.Text;
             DateWatched = dpDateWatched.SelectedDate ?? DateTime.Now; // Use current date if no date is selected
+
             // Close the window with DialogResult set to true
             DialogResult = true;
+        }
+
+        private void DpDateWatched_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Check if the selected date is in the future
+            if (dpDateWatched.SelectedDate > DateTime.Now)
+            {
+                // If the selected date is in the future, display a message box
+                MessageBox.Show("Future date! Defaulting to current date.");
+                // Set the date picker's selected date to the current date
+                dpDateWatched.SelectedDate = DateTime.Now;
+            }
         }
     }
 }

@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Movie_Rating_System"
         mc:Ignorable="d"
         Title="Movie Log" Height="600" Width="800"
+        ResizeMode="NoResize"
         Background="DarkSlateBlue">
     <Window.Resources>
         <local:DateConverter x:Key="DateConverter"/>
@@ -22,16 +23,16 @@
         <Label Content="My Movie Log" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="36" Margin="0,2,0,0"/>
 
         <!-- Movie Input Section -->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,60,0,0">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,60,37,0">
             <Button Content="Log New Movie" Click="AddMovie_Click" Height="33" Width="104"/>
         </StackPanel>
 
         <!-- Logged Movies Section -->
-        <Label Content="My Logged Movies" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="24" Margin="49,120,0,0"/>
-        <ListView Name="lstLoggedMovies" MouseDoubleClick="lstLoggedMovies_MouseDoubleClick" HorizontalAlignment="Left" Height="350" Margin="49,160,0,0" VerticalAlignment="Top" Width="400">
+        <Label Content="My Logged Movies" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="24" Margin="44,56,0,0"/>
+        <ListView Name="lstLoggedMovies" MouseDoubleClick="lstLoggedMovies_MouseDoubleClick" HorizontalAlignment="Left" Height="356" Margin="49,98,0,0" VerticalAlignment="Top" Width="698" FontSize="14">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" Width="200">
+                    <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" Width="399">
                         <GridViewColumn.HeaderContainerStyle>
                             <Style TargetType="{x:Type GridViewColumnHeader}">
                                 <Setter Property="Tag" Value="Title"/>
@@ -47,7 +48,7 @@
                             </Style>
                         </GridViewColumn.HeaderContainerStyle>
                     </GridViewColumn>
-                    <GridViewColumn Header="Date Watched" DisplayMemberBinding="{Binding DateWatched, Converter={StaticResource DateConverter}}" Width="100">
+                    <GridViewColumn Header="Date Watched" DisplayMemberBinding="{Binding DateWatched, Converter={StaticResource DateConverter}}" Width="200">
                         <GridViewColumn.HeaderContainerStyle>
                             <Style TargetType="{x:Type GridViewColumnHeader}">
                                 <Setter Property="Tag" Value="DateWatched"/>
@@ -62,11 +63,10 @@
 
 
         <!-- Filters Section -->
-        <Label Content="Filters" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="24" Margin="547,125,0,0"/>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="547,160,0,74">
-            <ComboBox x:Name="cmbYearFilter" Width="200" Margin="0,5"/>
-            <ComboBox x:Name="cmbRatingFilter" Width="200" Margin="0,5"/>
-        </StackPanel>
-        <Button Content="Check Watchlist" Click="CheckWatchlist_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="547,476,0,0" Height="34" Width="200"/>
+        <Label Content="Filters" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="24" Margin="44,0,0,71"/>
+        <ComboBox x:Name="cmbYearFilter" Width="200" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="282,0,0,52"/>
+        <ComboBox x:Name="cmbRatingFilter" Width="200" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="49,0,0,52"/>
+        <Button Content="Check Watchlist" Click="CheckWatchlist_Click" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="547,0,0,52" Height="39" Width="200"/>
+
     </Grid>
 </Window>
