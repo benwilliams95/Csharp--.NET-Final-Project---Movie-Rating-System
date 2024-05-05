@@ -79,24 +79,34 @@ namespace Movie_Rating_System
         {
             InitializeComponent();
 
+
             loggedMovies = loggedMovies.OrderByDescending(movie => movie.Rating).ToList();
 
             lstLoggedMovies.ItemsSource = loggedMovies;
+            filteredMovies = loggedMovies;
 
             // Populate the year filter ComboBox
             var uniqueYears = loggedMovies.Select(movie => movie.DateWatched.Year).Distinct().ToList();
             uniqueYears.Sort(); // Sort the years in ascending order
-            var yearOptions = uniqueYears.Cast<object>().ToList(); // Convert years to object type
+            var yearOptions = uniqueYears.Select(year => year.ToString()).ToList(); // Convert years to string type
             yearOptions.Insert(0, "All Years"); // Insert "All Years" as the default option
             cmbYearFilter.ItemsSource = yearOptions;
+            cmbYearFilter.SelectedIndex = 0; // Set the selected index to 0 (All Years)
+
 
 
             // Populate the rating filter ComboBox
             var uniqueRatings = loggedMovies.Select(movie => movie.Rating).Distinct().ToList();
             uniqueRatings.Sort(); // Sort the ratings in ascending order
-            var ratingOptions = uniqueRatings.Cast<object>().ToList(); // Convert ratings to object type
+            var ratingOptions = uniqueRatings.Select(year => year.ToString()).ToList(); // Convert ratings to object type
             ratingOptions.Insert(0, "All Ratings"); // Insert "All Ratings" as the default option
             cmbRatingFilter.ItemsSource = ratingOptions;
+            cmbRatingFilter.SelectedIndex = 0; // Set the selected index to 0 (All Ratings)
+
+
+            cmbYearFilter.SelectionChanged += cmbYearFilter_SelectionChanged;
+            cmbRatingFilter.SelectionChanged += cmbRatingFilter_SelectionChanged;
+
 
         }
 
@@ -118,7 +128,7 @@ namespace Movie_Rating_System
                 // Populate the year filter ComboBox
                 var uniqueYears = loggedMovies.Select(movie => movie.DateWatched.Year).Distinct().ToList();
                 uniqueYears.Sort(); // Sort the years in ascending order
-                var yearOptions = uniqueYears.Cast<object>().ToList(); // Convert years to object type
+                var yearOptions = uniqueYears.Select(year => year.ToString()).ToList(); // Convert years to string type
                 yearOptions.Insert(0, "All Years"); // Insert "All Years" as the default option
                 cmbYearFilter.ItemsSource = yearOptions;
 
@@ -126,7 +136,7 @@ namespace Movie_Rating_System
                 // Populate the rating filter ComboBox
                 var uniqueRatings = loggedMovies.Select(movie => movie.Rating).Distinct().ToList();
                 uniqueRatings.Sort(); // Sort the ratings in ascending order
-                var ratingOptions = uniqueRatings.Cast<object>().ToList(); // Convert ratings to object type
+                var ratingOptions = uniqueRatings.Select(year => year.ToString()).ToList(); // Convert ratings to object type
                 ratingOptions.Insert(0, "All Ratings"); // Insert "All Ratings" as the default option
                 cmbRatingFilter.ItemsSource = ratingOptions;
 
@@ -151,6 +161,8 @@ namespace Movie_Rating_System
 
                 // Refresh the ListBox with the sorted movies
                 lstLoggedMovies.ItemsSource = loggedMovies;
+                filteredMovies = loggedMovies;
+
             }
         }
 
@@ -181,6 +193,10 @@ namespace Movie_Rating_System
             lstLoggedMovies.Items.Refresh();
         }
 
+        
+
+        private List<Movie> filteredMovies = new List<Movie>();
+
         private void SortHeader_Click(object sender, RoutedEventArgs e)
         {
             // Sort logic based on the clicked column header
@@ -204,23 +220,110 @@ namespace Movie_Rating_System
             switch (sortBy)
             {
                 case "Title":
-                    loggedMovies = isSortAscending ? loggedMovies.OrderBy(movie => movie.Title).ToList()
-                                                   : loggedMovies.OrderByDescending(movie => movie.Title).ToList();
+                    filteredMovies = isSortAscending ? filteredMovies.OrderBy(movie => movie.Title).ToList()
+                                                       : filteredMovies.OrderByDescending(movie => movie.Title).ToList();
                     break;
                 case "Rating":
-                    loggedMovies = isSortAscending ? loggedMovies.OrderBy(movie => movie.Rating).ToList()
-                                                   : loggedMovies.OrderByDescending(movie => movie.Rating).ToList();
+                    filteredMovies = isSortAscending ? filteredMovies.OrderBy(movie => movie.Rating).ToList()
+                                                       : filteredMovies.OrderByDescending(movie => movie.Rating).ToList();
                     break;
                 case "DateWatched":
-                    loggedMovies = isSortAscending ? loggedMovies.OrderBy(movie => movie.DateWatched).ToList()
-                                                   : loggedMovies.OrderByDescending(movie => movie.DateWatched).ToList();
+                    filteredMovies = isSortAscending ? filteredMovies.OrderBy(movie => movie.DateWatched).ToList()
+                                                       : filteredMovies.OrderByDescending(movie => movie.DateWatched).ToList();
                     break;
                 default:
                     break;
             }
 
-            lstLoggedMovies.ItemsSource = loggedMovies;
+            lstLoggedMovies.ItemsSource = filteredMovies;
+
         }
+
+
+        private void UpdateFilteredMovies()
+        {
+            string selectedYear = cmbYearFilter.SelectedItem as string;
+            string selectedRating = cmbRatingFilter.SelectedItem as string;
+
+            if (selectedYear == "All Years" && selectedRating == "All Ratings")
+            {
+                // If both filters are set to "All", display all movies
+                filteredMovies = loggedMovies;
+            }
+            else if (selectedYear != "All Years" && selectedRating != "All Ratings")
+            {
+                // If both filters are selected
+                int year;
+                double rating;
+                if (int.TryParse(selectedYear, out year) && double.TryParse(selectedRating, out rating))
+                {
+                    filteredMovies = loggedMovies.Where(movie => movie.DateWatched.Year == year && movie.Rating == rating).ToList();
+                }
+                else
+                {
+                    // Handle invalid selections
+                    MessageBox.Show("Invalid selection for year or rating.");
+                    // Display all movies
+                    filteredMovies = loggedMovies;
+                }
+            }
+            else if (selectedYear != "All Years")
+            {
+                // If only the year filter is selected
+                int year;
+                if (int.TryParse(selectedYear, out year))
+                {
+                    filteredMovies = loggedMovies.Where(movie => movie.DateWatched.Year == year).ToList();
+                }
+                else
+                {
+                    // Handle invalid selection
+                    MessageBox.Show("Invalid selection for year.");
+                    // Display all movies
+                    filteredMovies = loggedMovies;
+                }
+            }
+            else if (selectedRating != "All Ratings")
+            {
+                // If only the rating filter is selected
+                double rating;
+                if (double.TryParse(selectedRating, out rating))
+                {
+                    filteredMovies = loggedMovies.Where(movie => movie.Rating == rating).ToList();
+                }
+                else
+                {
+                    // Handle invalid selection
+                    MessageBox.Show("Invalid selection for rating.");
+                    // Display all movies
+                    filteredMovies = loggedMovies;
+                }
+            }
+            else
+            {
+                // If none of the filters are selected, display all movies
+                filteredMovies = loggedMovies;
+            }
+
+            // Update the ListBox with the filtered movies
+            lstLoggedMovies.ItemsSource = filteredMovies;
+        }
+
+
+
+        private void cmbYearFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateFilteredMovies();
+        }
+
+        private void cmbRatingFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateFilteredMovies();
+        }
+
+
+
+
 
 
     }
