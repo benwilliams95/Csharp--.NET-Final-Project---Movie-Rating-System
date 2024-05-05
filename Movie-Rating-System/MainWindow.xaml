@@ -60,8 +60,6 @@
             </ListView.View>
         </ListView>
 
-
-
         <!-- Filters Section -->
         <Label Content="Filters" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="24" Margin="44,0,0,71"/>
         <ComboBox x:Name="cmbYearFilter" Width="200" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="282,0,0,52"/>
